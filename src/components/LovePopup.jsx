@@ -2,7 +2,28 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, X } from 'lucide-react';
 
+const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) {
+        return {
+            title: 'Buenos días Diana ☀️',
+            message: 'Que tengas lindo día,',
+        };
+    } else if (hour < 21) {
+        return {
+            title: 'Hola Diana!',
+            message: 'Que tengas linda tarde,',
+        };
+    } else {
+        return {
+            title: 'Buenas noches Diana 🌙',
+            message: 'Que descanses,',
+        };
+    }
+};
+
 const LovePopup = ({ isOpen, onClose }) => {
+    const { title, message } = getGreeting();
     return (
         <AnimatePresence>
             {isOpen && (
@@ -59,7 +80,7 @@ const LovePopup = ({ isOpen, onClose }) => {
                             fontFamily: '"Lora", serif',
                             letterSpacing: '-0.02em'
                         }}>
-                            Hola Diana
+                            {title}
                         </h2>
 
                         <p style={{
@@ -69,7 +90,7 @@ const LovePopup = ({ isOpen, onClose }) => {
                             lineHeight: 1.6,
                             fontFamily: '"Outfit", sans-serif'
                         }}>
-                            Que tengas lindo día, <br />
+                            {message} <br />
                             <span style={{ color: '#E57373', fontWeight: 600 }}>te quiero mucho.</span>
                         </p>
 

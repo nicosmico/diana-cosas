@@ -53,7 +53,9 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
             // Show random, unique error message
             let pool = availableErrors;
             if (pool.length === 0) {
-                pool = [...errorMessages]; // Reset if exhausted
+                // Reset pool but exclude the last shown message to avoid immediate repeat
+                pool = errorMessages.filter(msg => msg.text !== currentError);
+                if (pool.length === 0) pool = [...errorMessages]; // fallback if only 1 message exists
             }
 
             const randomIndex = Math.floor(Math.random() * pool.length);
@@ -163,7 +165,7 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
                                     lineHeight: 1.3,
                                     fontFamily: '"Lora", serif' // Ensure font matches
                                 }}>
-                                    ¿Como sé si eres Diana? 🫵
+                                    ¿Cómo sé si eres Diana? 🫵
                                 </h2>
                                 <p style={{
                                     color: '#546E7A', // Softer slate blue-grey
