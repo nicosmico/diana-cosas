@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import HeartButton from './components/HeartButton';
 import LovePopup from './components/LovePopup';
 import SecurityPopup from './components/SecurityPopup';
 import { vibratePattern } from './utils/vibration';
+
+// Created once at module level — never re-instantiated on re-renders
+const successAudio = new Audio('/sounds/undertale-shop.mp3');
+successAudio.preload = 'auto';
 
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -41,6 +46,7 @@ function App() {
     })();
   };
 
+
   const handleClick = () => {
     setIsSecurityOpen(true);
   };
@@ -49,6 +55,13 @@ function App() {
     setIsSecurityOpen(false);
     setIsPopupOpen(true);
     triggerConfetti();
+    // Play success sound
+    try {
+      successAudio.currentTime = 0;
+      successAudio.play().catch(e => console.error('Success audio failed:', e));
+    } catch (e) {
+      console.error('Success audio error:', e);
+    }
   };
 
   return (
@@ -61,7 +74,60 @@ function App() {
       position: 'relative',
       overflow: 'hidden' // Prevent any internal scroll
     }}>
-      <HeartButton onClick={handleClick} />
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+        <HeartButton onClick={handleClick} />
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          style={{
+            margin: 0,
+            fontSize: '0.8rem',
+            color: 'rgba(44, 62, 80, 0.84)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '5px',
+            letterSpacing: '0.02em',
+            userSelect: 'none',
+          }}
+        >
+          🔊 La página tiene sonidos, te aviso por si acaso
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.8, duration: 0.6 }}
+          style={{
+            margin: 0,
+            fontSize: '0.8rem',
+            color: 'rgba(44, 62, 80, 0.84)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '5px',
+            letterSpacing: '0.02em',
+            userSelect: 'none',
+          }}
+        >
+          Atte. yo
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 3, duration: 0.6 }}
+          style={{
+            margin: 0,
+            fontSize: '0.8rem',
+            color: 'rgba(44, 62, 80, 0.84)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '5px',
+            letterSpacing: '0.02em',
+            userSelect: 'none',
+          }}
+        >
+          el Nico 🦝
+        </motion.p>
+      </div>
 
       <SecurityPopup
         isOpen={isSecurityOpen}
@@ -71,7 +137,11 @@ function App() {
 
       <LovePopup
         isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
+        onClose={() => {
+          setIsPopupOpen(false);
+          successAudio.pause();
+          successAudio.currentTime = 0;
+        }}
       />
     </div>
   );
