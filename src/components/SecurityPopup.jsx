@@ -14,6 +14,20 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
     const [availableErrors, setAvailableErrors] = useState([...errorMessages]);
     const [currentError, setCurrentError] = useState(null);
 
+    // Audio cache
+    const audioCache = React.useRef({});
+
+    // Preload sounds on mount
+    useEffect(() => {
+        errorMessages.forEach(msg => {
+            if (msg.sound && !audioCache.current[msg.sound]) {
+                const audio = new Audio(msg.sound);
+                audio.preload = 'auto'; // Request preload
+                audioCache.current[msg.sound] = audio;
+            }
+        });
+    }, []);
+
     useEffect(() => {
         if (isOpen) {
             // Pick a random question each time it opens
@@ -47,9 +61,16 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
 
             setCurrentError(errorData.text);
 
-            // Play error sound
+            // Play error sound - use preloaded if available
             try {
-                const audio = new Audio(errorData.sound);
+                let audio = audioCache.current[errorData.sound];
+
+                if (!audio) {
+                    audio = new Audio(errorData.sound);
+                } else {
+                    audio.currentTime = 0; // Reset to start if reusing
+                }
+
                 audio.play().catch(e => console.error("Audio play failed:", e));
             } catch (e) {
                 console.error("Audio creation failed:", e);
