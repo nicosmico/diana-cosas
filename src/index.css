@@ -16,10 +16,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html,
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /* Lock scroll globally for app-like feel */
+}
+
+body {
+  place-items: initial;
+  /* Reset place-items if inherited? No, just remove display: flex */
+  display: block;
   min-width: 320px;
   min-height: 100vh;
   background-color: #E8F5E9;
@@ -32,8 +42,7 @@ body {
   background-repeat: repeat;
   /* Ensure seamless tiling */
   /* Pattern size, gradient cover */
-  overflow: hidden;
-  /* Prevent scrollbars during animations */
+
   -webkit-tap-highlight-color: transparent;
   /* Remove blue tap highlight on mobile */
 }

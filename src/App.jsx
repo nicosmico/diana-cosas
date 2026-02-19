@@ -52,11 +52,12 @@ function App() {
   return (
     <div style={{
       width: '100vw',
-      height: '100vh',
+      height: '100dvh', // Dynamic Viewport Height for perfect mobile centering
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      position: 'relative'
+      position: 'relative',
+      overflow: 'hidden' // Prevent any internal scroll
     }}>
       <HeartButton onClick={handleClick} />
 
