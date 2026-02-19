@@ -6,7 +6,8 @@
   font-weight: 400;
 
   color-scheme: light;
-  background-color: #E8F5E9; /* Pastel Green Background */
+  background-color: #E8F5E9;
+  /* Pastel Green Background */
   color: #2c3e50;
 
   font-synthesis: none;
@@ -21,9 +22,20 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); /* Subtle gradient for premium feel */
-  overflow: hidden; /* Prevent scrollbars during animations */
-  -webkit-tap-highlight-color: transparent; /* Remove blue tap highlight on mobile */
+  background-color: #E8F5E9;
+  /* Premium gradient base */
+  background:
+    url('./assets/floral-pattern.svg'),
+    linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+  background-size: 200px 200px, cover;
+  /* Adjusted for new branch pattern */
+  background-repeat: repeat;
+  /* Ensure seamless tiling */
+  /* Pattern size, gradient cover */
+  overflow: hidden;
+  /* Prevent scrollbars during animations */
+  -webkit-tap-highlight-color: transparent;
+  /* Remove blue tap highlight on mobile */
 }
 
 /* Modal Overlay */
@@ -33,18 +45,22 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.4); /* Glassmorphism effect */
+  background: rgba(255, 255, 255, 0.4);
+  /* Glassmorphism effect */
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 50;
-  padding: 16px; /* Ensure spacing on small mobile screens */
+  padding: 16px;
+  /* Ensure spacing on small mobile screens */
   box-sizing: border-box;
 }
 
 /* Premium Typography Check */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: 'Playfair Display', serif;
 }
 
@@ -53,6 +69,6 @@ button {
   outline: none;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  font-family: 'Outfit', sans-serif; /* Default font for buttons */
+  font-family: 'Outfit', sans-serif;
+  /* Default font for buttons */
 }
-

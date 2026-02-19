@@ -18,7 +18,7 @@ const HeartButton = ({ onClick }) => {
                 fontSize: '1.3rem',
                 borderRadius: '50px',
                 cursor: 'pointer',
-                boxShadow: '0 10px 30px rgba(229, 115, 115, 0.25)', // Softer, deeper shadow
+                boxShadow: '0 10px 30px rgba(56, 142, 60, 0.25)', // Greenish shadow to match theme
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
