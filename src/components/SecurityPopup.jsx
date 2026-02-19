@@ -4,6 +4,7 @@ import { ShieldCheck } from 'lucide-react';
 import { questions } from '../data/questions';
 import { errorMessages } from '../data/errorMessages';
 import ErrorSnackbar from './ErrorSnackbar';
+import { vibratePattern } from '../utils/vibration';
 
 const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
     const [currentQuestion, setCurrentQuestion] = useState(null);
@@ -31,6 +32,7 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
             onCorrectAnswer();
         } else {
             // Incorrect answer animation
+            vibratePattern(100); // Error vibration
             setShake(true);
             setTimeout(() => setShake(false), 500);
 

@@ -3,12 +3,14 @@ import confetti from 'canvas-confetti';
 import HeartButton from './components/HeartButton';
 import LovePopup from './components/LovePopup';
 import SecurityPopup from './components/SecurityPopup';
+import { vibratePattern } from './utils/vibration';
 
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isSecurityOpen, setIsSecurityOpen] = useState(false);
 
   const triggerConfetti = () => {
+    vibratePattern(200); // Success vibration (safely handled)
     const duration = 3000;
     const end = Date.now() + duration;
 
