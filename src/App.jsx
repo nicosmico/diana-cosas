@@ -2,9 +2,11 @@ import { useState } from 'react';
 import confetti from 'canvas-confetti';
 import HeartButton from './components/HeartButton';
 import LovePopup from './components/LovePopup';
+import SecurityPopup from './components/SecurityPopup';
 
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isSecurityOpen, setIsSecurityOpen] = useState(false);
 
   const triggerConfetti = () => {
     const duration = 3000;
@@ -38,8 +40,13 @@ function App() {
   };
 
   const handleClick = () => {
-    triggerConfetti();
+    setIsSecurityOpen(true);
+  };
+
+  const handleSecuritySuccess = () => {
+    setIsSecurityOpen(false);
     setIsPopupOpen(true);
+    triggerConfetti();
   };
 
   return (
@@ -52,6 +59,12 @@ function App() {
       position: 'relative'
     }}>
       <HeartButton onClick={handleClick} />
+
+      <SecurityPopup
+        isOpen={isSecurityOpen}
+        onClose={() => setIsSecurityOpen(false)}
+        onCorrectAnswer={handleSecuritySuccess}
+      />
 
       <LovePopup
         isOpen={isPopupOpen}
