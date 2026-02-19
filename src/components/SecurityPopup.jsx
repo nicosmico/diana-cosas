@@ -124,7 +124,7 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
                             }}
                             style={{
                                 backgroundColor: 'rgba(255, 255, 255, 0.95)', // Slightly more transparent for glassmorphism
-                                padding: '24px', // Reduced padding for better mobile fit
+                                padding: '16px', // Reduced padding for better mobile fit
                                 borderRadius: '24px',
                                 maxWidth: '90%',
                                 width: '450px',
@@ -161,7 +161,7 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
                                     color: '#2c3e50', // Updated to project primary text color
                                     marginBottom: '8px',
                                     lineHeight: 1.3,
-                                    fontFamily: '"Playfair Display", serif' // Ensure font matches
+                                    fontFamily: '"Lora", serif' // Ensure font matches
                                 }}>
                                     ¿Como sé si eres Diana? 🫵
                                 </h2>
@@ -181,7 +181,7 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
                                 style={{ marginBottom: '24px' }}
                             >
                                 <h3 style={{
-                                    fontSize: '1.2rem',
+                                    fontSize: '1.1rem',
                                     color: '#333',
                                     marginBottom: '20px',
                                     fontWeight: 600
@@ -192,7 +192,7 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
                                 <div style={{
                                     display: 'grid',
                                     gridTemplateColumns: '1fr',
-                                    gap: '12px'
+                                    gap: '10px'
                                 }}>
                                     {currentQuestion.options.map((option, index) => (
                                         <motion.button

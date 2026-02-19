@@ -32,25 +32,6 @@ const LovePopup = ({ isOpen, onClose }) => {
                         }}
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <button
-                            onClick={onClose}
-                            style={{
-                                position: 'absolute',
-                                top: '12px',
-                                right: '12px',
-                                background: 'transparent',
-                                color: '#9CA3AF',
-                                cursor: 'pointer',
-                                padding: '8px', // Increased touch target
-                                borderRadius: '50%',
-                                transition: 'background-color 0.2s',
-                            }}
-                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F5F5F5'}
-                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
-                        >
-                            <X size={24} />
-                        </button>
-
                         <motion.div
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
@@ -75,7 +56,7 @@ const LovePopup = ({ isOpen, onClose }) => {
                             color: '#2C3E50',
                             fontSize: '2rem', // Slightly larger
                             fontWeight: 700,
-                            fontFamily: '"Playfair Display", serif',
+                            fontFamily: '"Lora", serif',
                             letterSpacing: '-0.02em'
                         }}>
                             Hola Diana

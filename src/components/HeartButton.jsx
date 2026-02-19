@@ -28,7 +28,7 @@ const HeartButton = ({ onClick }) => {
         >
             <Heart size={28} fill="#E57373" strokeWidth={0} />
             <span style={{
-                fontFamily: '"Playfair Display", serif',
+                fontFamily: '"Lora", serif',
                 fontWeight: 600,
                 color: '#2c3e50', // Darker text for contrast
                 letterSpacing: '0.02em'
