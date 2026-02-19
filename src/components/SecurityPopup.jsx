@@ -43,9 +43,17 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
             }
 
             const randomIndex = Math.floor(Math.random() * pool.length);
-            const msg = pool[randomIndex];
+            const errorData = pool[randomIndex];
 
-            setCurrentError(msg);
+            setCurrentError(errorData.text);
+
+            // Play error sound
+            try {
+                const audio = new Audio(errorData.sound);
+                audio.play().catch(e => console.error("Audio play failed:", e));
+            } catch (e) {
+                console.error("Audio creation failed:", e);
+            }
 
             // Remove used message from pool
             const newPool = pool.filter((_, index) => index !== randomIndex);

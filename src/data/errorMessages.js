@@ -1,10 +1,8 @@
 export const errorMessages = [
-    "Voy a hacer como que no vi eso... 🫣",
-    "Parece que no hay tanto amor como pensaba... 💔",
-    "Error: corazón no detectado 🤖",
-    "Incorrecto. ¿Segura que eres tú? 🧐",
-    "¡Uy! Eso dolió... 🤕",
-    "Mmmm, sospechoso... 🤔",
-    "Inténtalo de nuevo, pero con más amor ❤️",
-    "Diana no se equivocaría en esto... 🤨"
+    { text: "¿Quién eres, impostor? 🫵🤨", sound: "/sounds/among-us-role-reveal-sound.mp3" },
+    { text: "Buen intento, intruso 🗣️", sound: "/sounds/fahhhhhhhhhhhhhh.mp3" },
+    { text: "Aló policía? 📸🤨", sound: "/sounds/photo.mp3" },
+    { text: "Voy a hacer como que no vi eso 👍", sound: "/sounds/quack.mp3" },
+    { text: "La idea es ponerle ganas igual 🥀", sound: "/sounds/spongebob-fail.mp3" },
+    { text: "La Diana sabría esto, o no? 🤨", sound: "/sounds/vine-boom.mp3" },
 ];

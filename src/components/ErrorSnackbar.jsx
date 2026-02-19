@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AlertCircle } from 'lucide-react';
+
 
 const ErrorSnackbar = ({ message, onClose }) => {
     useEffect(() => {
@@ -24,21 +24,22 @@ const ErrorSnackbar = ({ message, onClose }) => {
                         position: 'fixed',
                         bottom: '32px',
                         left: '50%',
-                        backgroundColor: '#FF5252',
-                        color: 'white',
+                        backgroundColor: '#263238', // Charcoal / Almost Black
+                        color: '#ECEFF1', // Soft white for text
+                        border: '1px solid #455A64', // Subtle integration border
                         padding: '12px 24px',
                         borderRadius: '50px',
-                        boxShadow: '0 8px 24px rgba(255, 82, 82, 0.4)',
+                        boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)', // Subtle shadow
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '10px',
+
                         zIndex: 2000, // Higher than modal
                         fontWeight: 600,
                         whiteSpace: 'nowrap',
                         fontSize: '0.95rem'
                     }}
                 >
-                    <AlertCircle size={20} strokeWidth={2.5} />
+
                     {message}
                 </motion.div>
             )}
