@@ -93,10 +93,12 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
                             }}
                             style={{
                                 backgroundColor: 'rgba(255, 255, 255, 0.95)', // Slightly more transparent for glassmorphism
-                                padding: '32px',
+                                padding: '24px', // Reduced padding for better mobile fit
                                 borderRadius: '24px',
                                 maxWidth: '90%',
                                 width: '450px',
+                                maxHeight: '85vh', // Prevent taking full height
+                                overflowY: 'auto', // Allow scrolling if content is too tall
                                 textAlign: 'center',
                                 boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
                                 position: 'relative',
@@ -108,23 +110,23 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
                                 initial={{ y: -20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.1 }}
-                                style={{ marginBottom: '24px' }}
+                                style={{ marginBottom: '20px' }} // Slightly reduced margin
                             >
                                 <div style={{
-                                    width: '64px',
-                                    height: '64px',
+                                    width: '56px', // Slightly smaller icon container
+                                    height: '56px',
                                     backgroundColor: '#E3F2FD',
                                     borderRadius: '50%',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    margin: '0 auto 16px',
+                                    margin: '0 auto 12px',
                                 }}>
-                                    <ShieldCheck size={32} color="#2196F3" />
+                                    <ShieldCheck size={28} color="#2196F3" />
                                 </div>
 
                                 <h2 style={{
-                                    fontSize: '1.5rem',
+                                    fontSize: '1.4rem', // Slightly adjusted font size
                                     color: '#2c3e50', // Updated to project primary text color
                                     marginBottom: '8px',
                                     lineHeight: 1.3,

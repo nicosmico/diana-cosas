@@ -25,9 +25,10 @@ const LovePopup = ({ isOpen, onClose }) => {
                             maxWidth: '90%',
                             width: '400px',
                             textAlign: 'center',
-                            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)',
+                            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)', // Slightly deeper shadow
                             position: 'relative',
-                            border: '2px solid #FFEBEE',
+                            border: '2px solid #FFCDD2', // Softer pink border
+                            backdropFilter: 'blur(10px)',
                         }}
                         onClick={(e) => e.stopPropagation()}
                     >
@@ -35,39 +36,47 @@ const LovePopup = ({ isOpen, onClose }) => {
                             onClick={onClose}
                             style={{
                                 position: 'absolute',
-                                top: '16px',
-                                right: '16px',
+                                top: '12px',
+                                right: '12px',
                                 background: 'transparent',
                                 color: '#9CA3AF',
-                                cursor: 'pointer'
+                                cursor: 'pointer',
+                                padding: '8px', // Increased touch target
+                                borderRadius: '50%',
+                                transition: 'background-color 0.2s',
                             }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F5F5F5'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                         >
-                            <X size={20} />
+                            <X size={24} />
                         </button>
 
                         <motion.div
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                            style={{ display: 'inline-block', marginBottom: '20px' }}
+                            style={{ display: 'inline-block', marginBottom: '24px' }}
                         >
                             <div style={{
-                                backgroundColor: '#FFEBEE', /* Pastel red background circle */
-                                padding: '20px',
+                                backgroundColor: '#FFEBEE',
+                                padding: '24px', // Slightly larger padding
                                 borderRadius: '50%',
                                 display: 'flex',
                                 alignItems: 'center',
-                                justifyContent: 'center'
+                                justifyContent: 'center',
+                                boxShadow: '0 10px 20px rgba(255, 235, 238, 0.5)'
                             }}>
-                                <Heart size={48} fill="#E57373" color="#E57373" />
+                                <Heart size={56} fill="#E57373" color="#E57373" />
                             </div>
                         </motion.div>
 
                         <h2 style={{
                             margin: '0 0 16px 0',
                             color: '#2C3E50',
-                            fontSize: '1.8rem',
-                            fontWeight: 600
+                            fontSize: '2rem', // Slightly larger
+                            fontWeight: 700,
+                            fontFamily: '"Playfair Display", serif',
+                            letterSpacing: '-0.02em'
                         }}>
                             Hola Diana
                         </h2>
@@ -75,8 +84,9 @@ const LovePopup = ({ isOpen, onClose }) => {
                         <p style={{
                             margin: 0,
                             color: '#546E7A',
-                            fontSize: '1.1rem',
-                            lineHeight: 1.6
+                            fontSize: '1.15rem',
+                            lineHeight: 1.6,
+                            fontFamily: '"Outfit", sans-serif'
                         }}>
                             Que tengas lindo día, <br />
                             <span style={{ color: '#E57373', fontWeight: 600 }}>te quiero mucho.</span>
