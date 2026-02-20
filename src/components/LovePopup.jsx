@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, X } from 'lucide-react';
 
-import { EQUIVALENCES, getDaysElapsed } from '../data/loveData';
+import { getDaysElapsed } from '../data/loveData';
+import { useEquivalencePoolContext } from '../context/EquivalencePoolContext';
 
 // ─── Greeting según hora ─────────────────────────────────────────
 const getGreeting = () => {
@@ -16,12 +17,13 @@ const getGreeting = () => {
 const LovePopup = ({ isOpen, onClose }) => {
     const { title, message } = getGreeting();
     const days = getDaysElapsed();
-    const lastEquivIndex = React.useRef(-1);
-    const [equivIndex, setEquivIndex] = useState(0);
+    const { pickEquivalence } = useEquivalencePoolContext();
+
+    const [current, setCurrent] = useState(null);
     const [showCounter, setShowCounter] = useState(false);
     const [showExtra, setShowExtra] = useState(false);
 
-    // Al abrir: elegir equivalencia al azar (distinta a la última) y mostrar contador luego de 2s
+    // Al abrir: elegir equivalencia del pool y programar reveals
     useEffect(() => {
         if (!isOpen) {
             setShowCounter(false);
@@ -29,23 +31,18 @@ const LovePopup = ({ isOpen, onClose }) => {
             return;
         }
 
-        // Elegir índice aleatorio que no sea igual al último mostrado
-        const pool = EQUIVALENCES.map((_, i) => i).filter(i => i !== lastEquivIndex.current);
-        const picked = pool[Math.floor(Math.random() * pool.length)];
-        lastEquivIndex.current = picked;
-        setEquivIndex(picked);
+        const picked = pickEquivalence(current?._id ?? null);
+        setCurrent(picked);
         setShowCounter(false);
         setShowExtra(false);
 
         const counterTimer = setTimeout(() => setShowCounter(true), 3000);
-        const extraTimer = setTimeout(() => setShowExtra(true), 8000); // 2s después del contador
+        const extraTimer = setTimeout(() => setShowExtra(true), 8000);
         return () => {
             clearTimeout(counterTimer);
             clearTimeout(extraTimer);
         };
     }, [isOpen]);
-
-    const current = EQUIVALENCES[equivIndex];
 
     return (
         <AnimatePresence>
