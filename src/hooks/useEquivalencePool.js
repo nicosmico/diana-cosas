@@ -8,13 +8,13 @@ const TOTAL = EQUIVALENCES.length;
  * Hook que gestiona el pool de equivalencias con persistencia en localStorage.
  *
  * Lógica:
- *  - Guarda en localStorage los índices de equivalencias ya mostradas.
+ *  - Guarda en localStorage los `id` de equivalencias ya mostradas.
  *  - Al pedir una, filtra las no vistas y elige al azar.
  *  - Nunca repite la misma dos veces seguidas (excluye lastId).
  *  - Si ya se vieron todas, elige de cualquiera sin limpiar localStorage.
  *
  * Expone:
- *  - pickEquivalence(lastId?)  → devuelve la equivalencia elegida (con _id)
+ *  - pickEquivalence(lastId?)  → devuelve la equivalencia elegida
  *  - seenCount                 → cuántas distintas se han visto
  *  - totalCount                → total de equivalencias
  *  - allSeen                   → true cuando seenCount >= totalCount
@@ -46,26 +46,25 @@ const useEquivalencePool = () => {
 
     /**
      * Devuelve una equivalencia al azar.
-     * @param {number|null} lastId - índice de la última mostrada (para no repetir)
+     * @param {string|null} lastId - id de la última mostrada (para no repetir)
      */
     const pickEquivalence = useCallback((lastId = null) => {
         const seenIds = readSeenIds();
-        const all = EQUIVALENCES.map((e, i) => ({ ...e, _id: i }));
-        const unseen = all.filter(e => !seenIds.includes(e._id));
+        const unseen = EQUIVALENCES.filter(e => !seenIds.includes(e.id));
 
         // Priorizar no vistas; si no quedan, usar todas
-        let pool = unseen.length > 0 ? unseen : all;
+        let pool = unseen.length > 0 ? unseen : EQUIVALENCES;
 
         // Nunca repetir la misma dos veces seguidas
-        const withoutLast = pool.filter(e => e._id !== lastId);
+        const withoutLast = pool.filter(e => e.id !== lastId);
         if (withoutLast.length > 0) pool = withoutLast;
 
         console.log(
-            `[EquivalencePool] Vistas: ${seenIds.length}/${TOTAL} | Pool: ${pool.length}`
+            `[EquivalencePool] Vistas: ${seenIds.length}/${TOTAL} | Pool: ${pool.length} | Unseen: ${unseen.length}`
         );
 
         const picked = pool[Math.floor(Math.random() * pool.length)];
-        markAsSeen(picked._id);
+        markAsSeen(picked.id);
         return picked;
     }, [markAsSeen]);
 

@@ -8,10 +8,12 @@ export const getDaysElapsed = () => {
 };
 
 // ─── Equivalencias (cálculos reales) ─────────────────────────────
-// Para agregar más, añadí un objeto { icon, getEquivalence, extraMessages } a este array.
+// Para agregar más, añadí un objeto { id, icon, getEquivalence, extraMessages } a este array.
+// ⚠️  El `id` debe ser único y NUNCA cambiar — es la clave del localStorage.
 // getEquivalence(days) recibe los días transcurridos y devuelve el string a mostrar.
 export const EQUIVALENCES = [
     {
+        id: 'tubthumping',
         icon: '🎵',
         // Tubthumping - Chumbawamba: 4 min 37 seg = 277 seg
         getEquivalence: (days) => {
@@ -21,6 +23,7 @@ export const EQUIVALENCES = [
         extraMessages: ["I GET KNOCKED DOWN! 🗣️", "BUT I GET UP AGAIN 🗣️"]
     },
     {
+        id: 'sex-and-the-city',
         icon: '📺',
         // Sex and the City: 94 episodios × 30 min = 2820 min
         getEquivalence: (days) => {
@@ -33,6 +36,7 @@ export const EQUIVALENCES = [
         ]
     },
     {
+        id: 'caminata',
         icon: '🚶',
         // Caminando: 15 minutos de mi casa a la suya
         getEquivalence: (days) => {

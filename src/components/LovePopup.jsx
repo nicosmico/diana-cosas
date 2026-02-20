@@ -31,7 +31,7 @@ const LovePopup = ({ isOpen, onClose }) => {
             return;
         }
 
-        const picked = pickEquivalence(current?._id ?? null);
+        const picked = pickEquivalence(current?.id ?? null);
         setCurrent(picked);
         setShowCounter(false);
         setShowExtra(false);
@@ -216,7 +216,7 @@ const LovePopup = ({ isOpen, onClose }) => {
                                     <AnimatePresence>
                                         {showExtra && current.extraMessages && current.extraMessages.map((msg, i) => (
                                             <motion.p
-                                                key={`${equivIndex}-${i}`}
+                                                key={`${current.id}-${i}`}
                                                 initial={{ opacity: 0, y: 8 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 exit={{ opacity: 0 }}

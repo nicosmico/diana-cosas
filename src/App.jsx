@@ -128,9 +128,9 @@ function App() {
             transform: 'translateX(-50%)',
           }}>
             <AnimatePresence>
-              {allSeen && (
+              {seenCount > 0 && (
                 <motion.p
-                  key="all-seen"
+                  key="questions-seen"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
@@ -146,14 +146,14 @@ function App() {
                     cursor: 'pointer',
                   }}
                 >
-                  🎉 Ya viste todas las preguntas ({seenCount}/{totalCount})
+                  💭 Preguntas vistas: {seenCount}/{totalCount}
                 </motion.p>
               )}
             </AnimatePresence>
             <AnimatePresence>
-              {allEquivSeen && (
+              {equivSeenCount > 0 && (
                 <motion.p
-                  key="all-equiv-seen"
+                  key="equiv-seen"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
@@ -169,7 +169,7 @@ function App() {
                     cursor: 'pointer',
                   }}
                 >
-                  💫 Ya viste todas los saludos ({equivSeenCount}/{equivTotalCount})
+                  💫 Saludos vistos: {equivSeenCount}/{equivTotalCount}
                 </motion.p>
               )}
             </AnimatePresence>
