@@ -96,12 +96,14 @@ function App() {
               color: 'rgba(44, 62, 80, 0.84)',
               display: 'flex',
               alignItems: 'center',
+              textAlign: 'center',
               gap: '5px',
               letterSpacing: '0.02em',
               userSelect: 'none',
+              paddingInline: '.5rem'
             }}
           >
-            🔊 La página tiene sonidos, te aviso por si acaso
+            🔊 Sube el volumen, dejálo en menos de la mitad
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 8 }}
