@@ -8,6 +8,7 @@ import { useEquivalencePoolContext } from '../context/EquivalencePoolContext';
 // ─── Greeting según hora ─────────────────────────────────────────
 const getGreeting = () => {
     const hour = new Date().getHours();
+    if (hour < 4) return { title: 'Buenas noches Diana 🌙', message: 'Estas son horas de estar despierta?' };
     if (hour < 12) return { title: 'Buenos días Diana ☀️', message: 'Que tengas lindo día,' };
     if (hour < 21) return { title: 'Hola Diana!', message: 'Que tengas linda tarde,' };
     return { title: 'Buenas noches Diana 🌙', message: 'Que descanses,' };
