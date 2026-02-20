@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldCheck } from 'lucide-react';
-import { questions } from '../data/questions';
 import { errorMessages } from '../data/errorMessages';
 import ErrorSnackbar from './ErrorSnackbar';
 import { vibratePattern } from '../utils/vibration';
+import { useQuestionPoolContext } from '../context/QuestionPoolContext';
 
 const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [shake, setShake] = useState(false);
+
+    const { pickQuestion } = useQuestionPoolContext();
 
     // State for error messages
     const [availableErrors, setAvailableErrors] = useState([...errorMessages]);
@@ -22,7 +24,7 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
         errorMessages.forEach(msg => {
             if (msg.sound && !audioCache.current[msg.sound]) {
                 const audio = new Audio(msg.sound);
-                audio.preload = 'auto'; // Request preload
+                audio.preload = 'auto';
                 audioCache.current[msg.sound] = audio;
             }
         });
@@ -30,14 +32,9 @@ const SecurityPopup = ({ isOpen, onClose, onCorrectAnswer }) => {
 
     useEffect(() => {
         if (isOpen) {
-            // Pick a random question each time it opens
-            const randomIndex = Math.floor(Math.random() * questions.length);
-            setCurrentQuestion(questions[randomIndex]);
+            setCurrentQuestion(pickQuestion());
             setShake(false);
             setCurrentError(null);
-            // Reset errors pool if needed, or keep history? 
-            // Better to keep history across opens if we want strict non-repeat, 
-            // but resetting on new attempt is fine too. Let's keep history for now.
         }
     }, [isOpen]);
 

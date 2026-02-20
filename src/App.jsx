@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import HeartButton from './components/HeartButton';
 import LovePopup from './components/LovePopup';
 import SecurityPopup from './components/SecurityPopup';
 import { vibratePattern } from './utils/vibration';
+import { useQuestionPoolContext } from './context/QuestionPoolContext';
 
 // Created once at module level — never re-instantiated on re-renders
 const successAudio = new Audio('/sounds/undertale-shop.mp3');
@@ -13,6 +14,7 @@ successAudio.preload = 'auto';
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isSecurityOpen, setIsSecurityOpen] = useState(false);
+  const { allSeen, seenCount, totalCount, resetPool } = useQuestionPoolContext();
 
   const triggerConfetti = () => {
     vibratePattern(200); // Success vibration (safely handled)
@@ -76,6 +78,30 @@ function App() {
     }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
         <HeartButton onClick={handleClick} />
+        <AnimatePresence>
+          {allSeen && (
+            <motion.p
+              key="all-seen"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6 }}
+              onDoubleClick={resetPool}
+              title="Doble tap para resetear"
+              style={{
+                margin: 0,
+                marginBlock: '10px',
+                fontSize: '0.78rem',
+                color: 'rgba(44, 62, 80, 0.67)',
+                letterSpacing: '0.02em',
+                userSelect: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              🎉 Ya viste todas las preguntas ({seenCount}/{totalCount})
+            </motion.p>
+          )}
+        </AnimatePresence>
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -96,7 +122,7 @@ function App() {
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.8, duration: 0.6 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
           style={{
             margin: 0,
             fontSize: '0.8rem',
@@ -108,24 +134,7 @@ function App() {
             userSelect: 'none',
           }}
         >
-          Atte. yo
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 3, duration: 0.6 }}
-          style={{
-            margin: 0,
-            fontSize: '0.8rem',
-            color: 'rgba(44, 62, 80, 0.84)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '5px',
-            letterSpacing: '0.02em',
-            userSelect: 'none',
-          }}
-        >
-          el Nico 🦝
+          Atte. Nico 🦝
         </motion.p>
       </div>
 
