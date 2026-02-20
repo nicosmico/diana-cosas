@@ -1,4 +1,4 @@
-# 💖 Diana Love Project
+# 💖 Diana cosas
 
 Bienvenido al repositorio del proyecto **Diana Love**. Este es una aplicación web interactiva diseñada para crear una experiencia de usuario encantadora y sorprendente, con un enfoque en el diseño visual premium y la interactividad fluida.
 
