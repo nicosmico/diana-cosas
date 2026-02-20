@@ -45,7 +45,7 @@ export const questions = [
         id: 8,
         question: "¿Qué canción sonó cuando fuimos al Takes?",
         options: ["Magic", "Yellow", "Sparks", "The Scientist"],
-        correctAnswer: "Yellow"
+        correctAnswer: "Magic"
     },
     {
         id: 9,
