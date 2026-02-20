@@ -18,9 +18,9 @@ export const EQUIVALENCES = [
         // Tubthumping - Chumbawamba: 4 min 37 seg = 277 seg
         getEquivalence: (days) => {
             const times = Math.floor((days * 24 * 60 * 60) / 277);
-            return `escuchar ${times.toLocaleString('es')} veces la canción Tubthumping de Chumbawamba. Si, esa que que tiene la portada de la wawa extraña.`;
+            return `escuchar ${times.toLocaleString('es')} veces la canción Tubthumping de Chumbawamba.`;
         },
-        extraMessages: ["I GET KNOCKED DOWN! 🗣️", "BUT I GET UP AGAIN 🗣️"]
+        extraMessages: ["I GET KNOCKED DOWN! 🗣️ BUT I GET UP AGAIN 🗣️"]
     },
     {
         id: 'sex-and-the-city',
@@ -36,6 +36,18 @@ export const EQUIVALENCES = [
         ]
     },
     {
+        id: 'the-studio',
+        icon: '📺',
+        // The studio: 10 episodios = 5 horas
+        getEquivalence: (days) => {
+            const times = (days * 24 / 5).toFixed(1);
+            return `ver ${times} veces The Studio completa`;
+        },
+        extraMessages: [
+            "No la hemos terminado, pero algún día si jajs",
+        ]
+    },
+    {
         id: 'caminata',
         icon: '🚶',
         // Caminando: 15 minutos de mi casa a la suya
@@ -43,6 +55,24 @@ export const EQUIVALENCES = [
             const times = Math.floor(days * 24 * 60 / 15);
             return `caminar ${times.toLocaleString('es')} veces de mi casa a la tuya`;
         },
-        extraMessages: ["Aunque siempre voy en auto, pero el resultado queda más grande si lo calculo así jaja"]
+        extraMessages: ["Aunque siempre voy en auto, pero el número quedaba más grande si lo calculaba así jaja"]
+    },
+    {
+        id: 'universo',
+        icon: '🌌',
+        // Expansión del universo: ~70 (km/s)/Mpc. 
+        // En términos comprensibles: el universo observable crece unos 6.5 años luz por año.
+        getEquivalence: (days) => {
+            const lightYearsPerDay = 6.5 / 365;
+            const kmPerDay = lightYearsPerDay * 9.461e+12; // 1 año luz en km
+            const totalExpansion = (days * kmPerDay);
+            const billions = (totalExpansion / 1e12).toFixed(2);
+
+            return `${billions} billones de kilómetros nuevos que se han creado en el universo desde entonces.`;
+        },
+        extraMessages: [
+            "Por la expansión acelerada y todas esas cosas nerds jajaj",
+            "Actually 🤓☝️",
+        ]
     },
 ];
